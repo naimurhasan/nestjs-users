@@ -3,8 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user/entity/user.entity';
-import { AuthController } from './auth/auth.controller';
+import { UserEntity } from './user/entity/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 
@@ -20,13 +19,13 @@ import { ProfileModule } from './profile/profile.module';
       password: '',
       database: 'nestjs',
       entities: [
-        User,
+        UserEntity,
       ],
       synchronize: true,
     }),
     UserModule,
     AuthModule,
-    ProfileModule,
+    ProfileModule
   ],
 })
 export class AppModule {}

@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
 @Entity()
-export class User {
+export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -15,4 +15,7 @@ export class User {
   @Column()
   @Exclude()
   password: string;
+
+  // @OneToMany(type => ArticleEntity, article => article.author)
+  // articles: ArticleEntity[];
 }

@@ -2,18 +2,18 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Repository } from 'typeorm';
-import { User } from './entity/user.entity';
+import { UserEntity } from './entity/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
     constructor(
-        @InjectRepository(User)
-        private readonly userRepository: Repository<User>
+        @InjectRepository(UserEntity)
+        private readonly userRepository: Repository<UserEntity>
     ) { }
     
-    getAll(): Promise<User []> {
+    getAll(): Promise<UserEntity []> {
         return this.userRepository.find();
     }
 
@@ -28,7 +28,7 @@ export class UserService {
 
         const hashedPassword = await bcrypt.hash(password, 10); // Hash password with bcrypt
 
-        const user = new User();
+        const user = new UserEntity();
         user.email = email;
         user.password = hashedPassword;
         user.name = name;
