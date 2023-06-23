@@ -13,11 +13,6 @@ export class UserController {
         return this.userService.getAll();
     }
 
-    @Post()
-    create(@Body() body: CreateUserDto){
-        return this.userService.createUser(body);
-    }
-
     @Get('/:id')
     show(@Param('id', ParseIntPipe) id: number){
         return this.userService.show(id);
